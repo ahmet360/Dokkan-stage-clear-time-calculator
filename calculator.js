@@ -1,31 +1,25 @@
-function calculatePercentageIncrease(startTime, endTime, stages) {
-    return ((endTime / startTime) ** (1 / stages) - 1) * 100;
-}
-
-function totalTimeToClear(startStage, endStage, baseTime, increaseRate, additionalIncreaseInterval, additionalIncreaseRate) {
+function calculateTotalTime(startStage, endStage, baseTime, increaseRate, additionalIncreaseInterval, additionalIncreaseRate) {
     let time = baseTime;
     let totalTime = 0;
     for (let stage = startStage; stage <= endStage; stage++) {
         if ((stage - 1) % additionalIncreaseInterval === 0 && stage > 1) {
-            time *= 1 + additionalIncreaseRate / 100;
+            time *= 1 + additionalIncreaseRate / 100;  // Apply additional 5% increase every 5 stages
         }
         totalTime += time;
-        time *= 1 + increaseRate / 100;
+        time *= 1 + increaseRate;  // Apply the adjusted increase rate per stage
     }
     return totalTime;
 }
 
-function calculateTime() {
+function displayTotalTime() {
     const currentStage = parseInt(document.getElementById('currentStage').value);
     const targetStage = parseInt(document.getElementById('targetStage').value);
-    const baseTimeStage1 = 20; // 20 seconds for stage 1
-    const timeStage786 = 1 * 60 + 7 + 0.008; // Time for stage 786 in seconds
-    const totalStages = 786 - 1;
-    const increaseRate = calculatePercentageIncrease(baseTimeStage1, timeStage786, totalStages);
-    const additionalIncreaseInterval = 10; // Every 5 stages
+    const baseTimeStage1 = 20; // Base time in seconds for stage 1
+    const adjustedIncreaseRate = 3.998040916498867e-06; // Adjusted increase rate per stage
+    const additionalIncreaseInterval = 5; // Every 5 stages
     const additionalIncreaseRate = 5; // 5% additional increase
 
-    const totalSeconds = totalTimeToClear(currentStage, targetStage, baseTimeStage1, increaseRate, additionalIncreaseInterval, additionalIncreaseRate);
+    const totalSeconds = calculateTotalTime(currentStage, targetStage, baseTimeStage1, adjustedIncreaseRate, additionalIncreaseInterval, additionalIncreaseRate);
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
