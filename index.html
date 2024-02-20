@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage Clear Time Calculator</title>
+</head>
+<body>
+    <h1>Stage Clear Time Calculator</h1>
+    <form id="calculatorForm">
+        <label for="currentStage">Current Stage:</label>
+        <input type="number" id="currentStage" required>
+        <br>
+        <label for="targetStage">Target Stage:</label>
+        <input type="number" id="targetStage" required>
+        <br>
+        <button type="button" onclick="calculateTime()">Calculate</button>
+    </form>
+    <div id="result"></div>
+
+    <script src="calculator.js"></script>
+</body>
+</html>
