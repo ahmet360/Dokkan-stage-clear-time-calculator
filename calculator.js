@@ -22,7 +22,7 @@ function calculateTime() {
     const timeStage786 = 1 * 60 + 7 + 0.008; // Time for stage 786 in seconds
     const totalStages = 786 - 1;
     const increaseRate = calculatePercentageIncrease(baseTimeStage1, timeStage786, totalStages);
-    const additionalIncreaseInterval = 5; // Every 5 stages
+    const additionalIncreaseInterval = 10; // Every 5 stages
     const additionalIncreaseRate = 5; // 5% additional increase
 
     const totalSeconds = totalTimeToClear(currentStage, targetStage, baseTimeStage1, increaseRate, additionalIncreaseInterval, additionalIncreaseRate);
